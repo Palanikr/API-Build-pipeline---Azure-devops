@@ -1,0 +1,14 @@
+pool:
+  name: Azure Pipelines
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish'
+  inputs:
+    command: publish
+    arguments: '--output $(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
